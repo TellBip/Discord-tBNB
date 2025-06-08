@@ -227,6 +227,9 @@ def chat(auth_data, proxy_data):
             current_user_id = get_current_user_id(authorization, proxy)
             if not current_user_id:
                 print(f"Error: Failed to get user ID for account with wallet {wallet_address}. Skipping this account.")
+                account_line = f"{authorization}|/{command_name} {wallet_address}"
+                with open("bad.txt", "a", encoding="utf-8") as fbad:
+                    fbad.write(account_line + "\n")
                 continue
             print(f"Processing account with user ID: {current_user_id} and wallet: {wallet_address}")
             target_server_channel_id = "1101022526550847508"
